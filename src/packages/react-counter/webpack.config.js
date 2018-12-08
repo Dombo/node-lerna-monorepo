@@ -46,14 +46,12 @@ module.exports = {
   },
   plugins: [new CheckerPlugin()],
   externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM'
-  },
-  performance: {
-    hints: false
+    react: 'commonjs react',
+    'react-dom': 'commonjs react-dom'
   },
   output: {
     filename: 'index.js',
-    path: resolve(__dirname, './lib')
+    path: resolve(__dirname, './lib'),
+    libraryTarget: 'commonjs'
   }
 };

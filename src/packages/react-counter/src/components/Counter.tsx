@@ -53,8 +53,8 @@ export class Counter extends React.Component<CounterProps, State> {
       <div>
         {this.props.value || this.state.count}
         <div>
-          <button>-</button>
-          <button>+</button>
+          <button onClick={this.onMinusClick}>-</button>
+          <button onClick={this.onPlusClick}>+</button>
         </div>
       </div>
     );

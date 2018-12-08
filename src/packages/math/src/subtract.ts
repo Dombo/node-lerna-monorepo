@@ -1,5 +1,5 @@
 export const subtract = (...numbers: number[]) => {
-  return numbers.reduce((prevValue, currValue) => {
-    return prevValue ? prevValue - currValue : currValue;
-  });
+  let initialValue = numbers.pop();
+  numbers.forEach(num => (initialValue = initialValue - num));
+  return initialValue;
 };
