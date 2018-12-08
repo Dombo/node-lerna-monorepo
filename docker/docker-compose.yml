@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  development:
+    container_name: bazel-development
+    image: incodocs/bazel-development:latest
+    volumes:
+      - ../:/usr/src:delegated
+    environment:
+      NODE_ENV: development
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/sh -l

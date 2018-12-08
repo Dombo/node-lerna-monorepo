@@ -1,0 +1,1 @@
+alias pkg-install="/usr/src/projects/incodocs/scripts/pkg-install.js"
