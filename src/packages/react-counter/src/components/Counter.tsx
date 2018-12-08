@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { add, subtract } from '@incodocs/math';
 
 interface CounterProps {
   /**
@@ -29,7 +30,7 @@ export class Counter extends React.Component<CounterProps, State> {
 
   onPlusClick = () => {
     this.setState(
-      state => ({ ...state, count: state.count + 1 }),
+      state => ({ ...state, count: add(state.count, 1) }),
       this.raiseCountChange
     );
   };
@@ -42,7 +43,7 @@ export class Counter extends React.Component<CounterProps, State> {
 
   onMinusClick = () => {
     this.setState(
-      state => ({ ...state, count: state.count - 1 }),
+      state => ({ ...state, count: subtract(state.count, 1) }),
       this.raiseCountChange
     );
   };

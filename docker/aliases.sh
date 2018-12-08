@@ -1,1 +1,1 @@
-alias pkg-install="/usr/src/projects/incodocs/scripts/pkg-install.js"
+alias pkg-install="/usr/src/docker/pkg-install.js"

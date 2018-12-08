@@ -14,5 +14,5 @@ RUN npm update && npm install npm
 RUN npm install -g lerna typescript
 
 ENV NODE_ENV development
-ADD aliases.sh /etc/profile.d/aliases.sh
+ADD pkg-install.js /usr/bin/pkg-install
 WORKDIR /usr/src
