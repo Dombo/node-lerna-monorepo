@@ -2,8 +2,8 @@ version: '2.1'
 
 services:
   development:
-    container_name: bazel-development
-    image: incodocs/bazel-development:latest
+    container_name: lerna-development
+    image: dombo/lerna-development:latest
     ports:
       - 3000:3000
     volumes:

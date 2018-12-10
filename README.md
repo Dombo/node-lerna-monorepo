@@ -1,12 +1,11 @@
 ## Getting Started
 
-### Developer Enviornment
+### Developer Environment
 
 Docker running Node 10 on Debian 8
 
 #### Tools Installed
 
-- Bazel
 - Lerna
 - pkg-install script for scoping lerna commands to the current pkg
 

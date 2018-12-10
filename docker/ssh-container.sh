@@ -1,3 +1,3 @@
 #!/bin/bash 
 
-docker exec -ti bazel-development /bin/bash
+docker exec -ti lerna-development /bin/bash

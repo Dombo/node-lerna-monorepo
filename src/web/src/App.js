@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Counter } from '@incodocs/react-counter';
-import * as test from '@incodocs/react-counter';
+import { Counter } from '@dombo/react-counter';
+import * as test from '@dombo/react-counter';
 
 class App extends Component {
   render() {

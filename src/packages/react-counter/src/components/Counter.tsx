@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { add, subtract } from '@incodocs/math';
+import { add, subtract } from '@dombo/math';
 
 interface CounterProps {
   /**

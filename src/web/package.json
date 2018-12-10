@@ -1,12 +1,12 @@
 {
-  "name": "web",
+  "name": "@dombo/web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@dombo/react-counter": "1.0.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1",
-    "@incodocs/react-counter": "1.0.0"
+    "react-scripts": "2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

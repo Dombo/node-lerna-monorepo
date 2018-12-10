@@ -1,0 +1,16 @@
+{
+  "name": "@dombo/monorepo",
+  "version": "0.0.0",
+  "description": "A util for managing the monorepo via lerna",
+  "main": "monorepo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chokidar": "^2.0.4",
+    "commander": "^2.19.0",
+    "execa": "^1.0.0"
+  }
+}

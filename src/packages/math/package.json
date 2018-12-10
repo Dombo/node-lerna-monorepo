@@ -1,5 +1,5 @@
 {
-  "name": "@incodocs/math",
+  "name": "@dombo/math",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
@@ -9,6 +9,9 @@
     "build": "tsc",
     "clean": "rm -rf ./lib",
     "clean-build": "npm run clean && npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^3.2.2"
   },
   "author": "",
   "license": "ISC"

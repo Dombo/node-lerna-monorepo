@@ -1,5 +1,5 @@
 {
-  "name": "@incodocs/react-counter",
+  "name": "@dombo/react-counter",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
@@ -41,6 +41,6 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "@incodocs/math": "1.0.0"
+    "@dombo/math": "1.0.0"
   }
 }
