@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const path = require('path');
+const fs = require('fs');
 const monorepo = require('commander');
 const execa = require('execa');
 const chokidar = require('chokidar');
@@ -34,9 +36,52 @@ const buildDependencyTreeMeta = async () => {
   }
 };
 
-const buildDependency = (path, name) => {
-  const lernaArgs = `exec --scope ${name} -- npm run build`.split(' ');
-  execa('lerna', lernaArgs, {stdio: 'inherit'});
+const findParentPackageManifest = (changedFile) => {
+  const startingPath = path.dirname(changedFile);
+
+  const up = (node) => {
+    let file = path.join(node, 'package.json');
+
+    if (fs.existsSync(file)) {
+      return path.dirname(file);
+    }
+
+    file = path.resolve(node, '..');
+
+    return up(file)
+  };
+
+  return up(startingPath);
+};
+
+const pruneParentPackageTree = (tree) => tree.slice(1, tree.length - 1); // removes the leaf node & the tree root
+
+const findParentPackages = async (name) => {
+  const lernaArgs = `ls --all --toposort --json --scope ${name} --include-filtered-dependents`.split(' ');
+  const { stdout } = await execa('lerna', lernaArgs);
+  return JSON.parse(stdout);
+};
+
+const buildDependency = async (name) => {
+  const lernaArgs = `run build --scope ${name}`.split(' ');
+  await execa('lerna', lernaArgs, {stdio: 'inherit'});
+};
+
+/*
+* From the context of a modified package currently under watch via watch()
+*   Find the package manifest of the changed dependency
+*   Build said dependency
+*   Find the upstream dependencies of said dependency (sans the tree root & node just build)
+*   Build them in order
+* */
+const buildDependencyChain = async (path) => {
+  const changedPackageManifest = findParentPackageManifest(path);
+  const changedPackageName = manifest(changedPackageManifest).name;
+  await buildDependency(changedPackageName);
+  const packageParents = await findParentPackages(changedPackageName);
+  const buildWorthyParents = pruneParentPackageTree(packageParents);
+  const buildOperations = buildWorthyParents.map(dependency => buildDependency(dependency.name));
+  await Promise.all(buildOperations);
 };
 
 const spawnWatcher = async (paths) => {
@@ -47,23 +92,27 @@ const spawnWatcher = async (paths) => {
   let watcher = chokidar.watch(paths, {
     ignored: [
       /(^|[\/\\])\../, // ignore dotfiles
-      /node_modules/ // ignore node_modules
+      /node_modules/, // ignore node_modules
+      /lib/ // ignore build output files
     ],
     persistent: true,
     ignoreInitial: true,
-    // awaitWriteFinish: true // Could be worthwhile if we have perf issues
+    awaitWriteFinish: true // Helps minimising thrashing of watch events
   });
 
   // Add event listeners
   return watcher
     .on('add', path => {
       log(`File ${path} has been added`);
+      buildDependencyChain(path);
     })
     .on('change', path => {
       log(`File ${path} has been changed`);
+      buildDependencyChain(path);
     })
     .on('unlink', path => {
       log(`File ${path} has been removed`);
+      buildDependencyChain(path);
     });
 };
 

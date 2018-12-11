@@ -41,6 +41,7 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "@dombo/math": "1.0.0"
+    "@dombo/math": "1.0.0",
+    "@dombo/react-utils": "1.0.0"
   }
 }

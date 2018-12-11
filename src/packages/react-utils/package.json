@@ -1,5 +1,5 @@
 {
-  "name": "@dombo/math",
+  "name": "@dombo/react-utils",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
@@ -10,12 +10,12 @@
     "clean": "rm -rf ./lib",
     "clean-build": "npm run clean && npm run build"
   },
-  "dependencies": {
-    "@dombo/logos": "1.0.0"
-  },
   "devDependencies": {
     "typescript": "^3.2.2"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^10.12.12"
+  }
 }

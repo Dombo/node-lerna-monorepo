@@ -1,0 +1,1 @@
+export const or = () => console.log('OR');
