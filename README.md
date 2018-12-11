@@ -71,3 +71,8 @@ Each package will have the following commands.
 - `build`
 
 Each package will output it's build artefacts to a `lib` directory relative to the package root.
+
+
+### Credits
+@tomjrob for the brainwave
+@davidhooper for the testing ground
