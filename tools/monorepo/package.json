@@ -2,15 +2,26 @@
   "name": "@dombo/monorepo",
   "version": "0.0.0",
   "description": "A util for managing the monorepo via lerna",
-  "main": "monorepo.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "src/monorepo.js",
+  "bin": {
+    "monorepo": "src/monorepo.js"
   },
-  "author": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config ./webpack.config.js && chmod +x lib/monorepo.js"
+  },
+  "author": "Dom Hutton (dombo)",
   "license": "ISC",
   "dependencies": {
     "chokidar": "^2.0.4",
     "commander": "^2.19.0",
     "execa": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
   }
 }

@@ -1,13 +1,12 @@
-FROM node:10-jessie
-
+FROM node:10-jessie as base
 RUN npm update && npm install npm
 RUN npm install -g lerna typescript
-
-ENV NODE_ENV development
-ADD pkg-install.js /usr/bin/pkg-install
 WORKDIR /usr/src
 
-#RUN cd /usr/src/tools/monorepo && \
-#    npm install && \
-#    nexe ./monorepo.js
-#
+FROM base as builder
+COPY ./tools ./tools
+RUN cd tools/monorepo && npm install && npm run build
+
+FROM base
+ENV NODE_ENV development
+COPY --from=builder /usr/src/tools/monorepo/lib/monorepo.js /usr/bin/monorepo

@@ -5,11 +5,11 @@ services:
     container_name: lerna-development
     image: dombo/lerna-development:latest
     ports:
-      - 3000:3000
+    - 3000:3000
     volumes:
-      - ../:/usr/src:delegated
+    - ../:/usr/src:delegated
     environment:
       NODE_ENV: development
     stdin_open: true
     tty: true
-    entrypoint: /bin/sh -l
+    entrypoint: /bin/bash -l

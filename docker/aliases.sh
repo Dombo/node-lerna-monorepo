@@ -1,1 +1,0 @@
-alias pkg-install="/usr/src/docker/pkg-install.js"

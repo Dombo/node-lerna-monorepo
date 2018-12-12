@@ -16,7 +16,6 @@ Docker running Node 10 on Debian 8
 #### Tools Installed
 
 - Lerna
-- pkg-install script for scoping lerna commands to the current pkg
 - monorepo utility for bootstrapping and watching the repo during development 
 
 #### Setup dev enviroment
@@ -42,24 +41,24 @@ Docker running Node 10 on Debian 8
 #### Dependency Graph
 
 ```
-       +------+
-       | Web  |
-       +------+
-          |
-          |
-   +---------------+
-   | react-counter |
-   +---------------+
-     |         |
-     |         |
-+------+    +-------------+
-| math |    | react-utils |
-+------+    +-------------+
-     |
-     |
-+-------+
-| logos |
-+-------+
+               +------+
+               | Web  |
+               +------+
+                  |
+                  |
+           +---------------+
+           | react-counter |
+           +---------------+
+             |         |
+             |         |
+        +------+    +-------------+
+        | math |    | react-utils |
+        +------+    +-------------+
+             |
+             |
+        +-------+
+        | logos |
+        +-------+
 
 
 ```
@@ -74,5 +73,7 @@ Each package will output it's build artefacts to a `lib` directory relative to t
 
 
 ### Credits
+
 @tomjrob for the brainwave
+
 @davidhooper for the testing ground
