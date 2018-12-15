@@ -1,30 +1,37 @@
-const webpack = require('webpack');
+const webpack = require("webpack");
 
 module.exports = {
-  "mode": "production",
-  "entry": "./src/monorepo.js",
-  "target": "node",
-  "output": {
-    "path": __dirname+'/lib',
-    "filename": "monorepo.js"
+  mode: "none", // "none" for debugging
+  entry: ["babel-polyfill", "./src/monorepo.js"],
+  target: "node",
+  output: {
+    path: __dirname + "/lib",
+    filename: "monorepo.js"
   },
-  "module": {
-    "rules": [
+  module: {
+    rules: [
       {
-        "test": /\.js$/,
-        "exclude": /node_modules/,
-        "use": {
-          "loader": "babel-loader",
-          "options": {
-            "presets": [
-              "env"
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [
+              [
+                "env",
+                {
+                  targets: {
+                    node: "8.10"
+                  }
+                }
+              ]
             ]
           }
         }
       }
     ]
   },
-  "plugins": [
+  plugins: [
     new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true }) // I use this to insert the shebang
   ]
 };
